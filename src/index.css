@@ -2,95 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 228 15% 9%;
+    --foreground: 210 20% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 228 12% 12%;
+    --card-foreground: 210 20% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 228 12% 12%;
+    --popover-foreground: 210 20% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 210 100% 60%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 24 95% 53%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 228 10% 18%;
+    --muted-foreground: 215 15% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 228 10% 18%;
+    --accent-foreground: 210 20% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 228 10% 20%;
+    --input: 228 10% 20%;
+    --ring: 210 100% 60%;
+
+    --radius: 0.625rem;
+
+    /* Radarr specific colors */
+    --radarr-blue: 205 100% 65%;
+    --radarr-blue-dark: 224 76% 48%;
+    --radarr-orange: 25 95% 53%;
+    --radarr-orange-dark: 21 90% 48%;
+    --radarr-glow-blue: 199 89% 60%;
+    --radarr-glow-orange: 27 96% 61%;
   }
 }
 
@@ -100,6 +50,257 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
   }
+}
+
+/* Radarr Header Card Styles */
+.radarr-header {
+  position: relative;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 16px 22px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #f9fafb;
+}
+
+.radarr-header--radarr {
+  background: linear-gradient(
+    90deg,
+    #4db3ff 0%,
+    #1d4ed8 45%,
+    #111827 100%
+  );
+}
+
+.radarr-header--radarr-uhd {
+  background: linear-gradient(
+    90deg,
+    #f97316 0%,
+    #ea580c 45%,
+    #111827 100%
+  );
+}
+
+.radarr-logo {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 9px;
+  background-image: url("https://raw.githubusercontent.com/Radarr/Radarr/develop/Logo/256.png");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  flex-shrink: 0;
+}
+
+.radarr-logo::before {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: inherit;
+  pointer-events: none;
+  filter: blur(20px);
+  opacity: 0;
+}
+
+/* Animation: Aura (Original) */
+.radarr-logo--aura::before {
+  animation: aura 2.2s ease-in-out infinite;
+}
+
+/* Animation: Pulse */
+.radarr-logo--pulse::before {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+/* Animation: Breathe */
+.radarr-logo--breathe::before {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+/* Animation: Flicker */
+.radarr-logo--flicker::before {
+  animation: flicker 0.8s ease-in-out infinite;
+}
+
+/* Animation: Heartbeat */
+.radarr-logo--heartbeat::before {
+  animation: heartbeat 1.2s ease-in-out infinite;
+}
+
+/* Animation: Wave */
+.radarr-logo--wave::before {
+  animation: wave 2s linear infinite;
+}
+
+/* Animation: Fade */
+.radarr-logo--fade::before {
+  animation: fade 4s ease-in-out infinite;
+}
+
+/* Animation: Bounce */
+.radarr-logo--bounce::before {
+  animation: bounce-glow 1s ease-in-out infinite;
+}
+
+/* Blue glow for HD */
+.radarr-header--radarr .radarr-logo::before {
+  background: rgba(56,189,248,0.5);
+}
+
+/* Orange glow for UHD */
+.radarr-header--radarr-uhd .radarr-logo::before {
+  background: rgba(251,146,60,0.5);
+}
+
+@keyframes aura {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.2; filter: blur(20px); }
+  50% { opacity: 0.9; filter: blur(25px); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.6; }
+  25% { opacity: 1; }
+  50% { opacity: 0.4; }
+  75% { opacity: 0.9; }
+}
+
+@keyframes heartbeat {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  14% { opacity: 1; transform: scale(1.15); }
+  28% { opacity: 0.5; transform: scale(1); }
+  42% { opacity: 0.9; transform: scale(1.1); }
+  70% { opacity: 0.3; transform: scale(1); }
+}
+
+@keyframes wave {
+  0% { opacity: 0.2; transform: scale(0.9) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.1) rotate(180deg); }
+  100% { opacity: 0.2; transform: scale(0.9) rotate(360deg); }
+}
+
+@keyframes fade {
+  0%, 100% { opacity: 0; }
+  25%, 75% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes bounce-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  30% { opacity: 1; transform: scale(1.2); }
+  50% { opacity: 0.7; transform: scale(0.95); }
+  70% { opacity: 0.9; transform: scale(1.05); }
+}
+
+.radarr-main {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.radarr-title-row {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.radarr-slash {
+  opacity: 0.6;
+}
+
+.radarr-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(17,24,39,0.9);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.radarr-subtitle {
+  font-size: 13px;
+  color: rgba(249,250,251,0.75);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.radarr-pills {
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.radarr-pill {
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(148,163,184,0.6);
+}
+
+.radarr-pill--mode {
+  background: rgba(59,130,246,0.18);
+  color: #93c5fd;
+  border-color: rgba(147,197,253,0.5);
+}
+
+.radarr-pill--quality-hd {
+  background: rgba(17,94,89,0.2);
+  color: #6ee7b7;
+  border-color: rgba(45,212,191,0.5);
+}
+
+.radarr-pill--quality-uhd {
+  background: rgba(154,52,18,0.25);
+  color: #fdba74;
+  border-color: rgba(251,146,60,0.5);
+}
+
+.radarr-pill--k8s {
+  background: rgba(15,23,42,0.9);
+  color: #e5e7eb;
+}
+
+/* Section title styling */
+.section-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 16px;
+}
+
+.animation-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+  text-align: center;
+  margin-top: 12px;
 }
