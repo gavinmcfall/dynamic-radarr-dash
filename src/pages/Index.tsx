@@ -14,41 +14,21 @@ const animations = [
 const Index = () => {
   return (
     <div className="min-h-screen p-8 md:p-12">
-      <div className="max-w-6xl mx-auto space-y-12">
-        {/* Main Comparison */}
-        <section>
-          <h1 className="section-title">HD vs UHD Variants</h1>
-          <div className="grid md:grid-cols-2 gap-6">
-            <RadarrHeader variant="radarr" />
-            <RadarrHeader variant="radarr-uhd" />
-          </div>
-        </section>
+      <div className="max-w-6xl mx-auto space-y-8">
+        <div className="grid grid-cols-2 gap-4 mb-4">
+          <p className="section-title text-center">HD</p>
+          <p className="section-title text-center">UHD</p>
+        </div>
 
-        {/* HD Animation Examples */}
-        <section>
-          <h2 className="section-title">HD — Animation Examples</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {animations.map((anim) => (
-              <div key={`hd-${anim.class}`}>
-                <RadarrHeader variant="radarr" animationClass={anim.class} />
-                <p className="animation-label">{anim.name}</p>
-              </div>
-            ))}
+        {animations.map((anim) => (
+          <div key={anim.class} className="space-y-2">
+            <p className="animation-label !mt-0 !mb-3">{anim.name}</p>
+            <div className="grid grid-cols-2 gap-4">
+              <RadarrHeader variant="radarr" animationClass={anim.class} />
+              <RadarrHeader variant="radarr-uhd" animationClass={anim.class} />
+            </div>
           </div>
-        </section>
-
-        {/* UHD Animation Examples */}
-        <section>
-          <h2 className="section-title">UHD — Animation Examples</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {animations.map((anim) => (
-              <div key={`uhd-${anim.class}`}>
-                <RadarrHeader variant="radarr-uhd" animationClass={anim.class} />
-                <p className="animation-label">{anim.name}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        ))}
       </div>
     </div>
   );
