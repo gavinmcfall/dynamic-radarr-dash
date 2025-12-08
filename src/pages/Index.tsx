@@ -9,6 +9,17 @@ const animations = [
   { class: 'radarr-logo--wave', name: 'Wave' },
   { class: 'radarr-logo--fade', name: 'Fade' },
   { class: 'radarr-logo--bounce', name: 'Bounce' },
+  { class: 'radarr-logo--strobe', name: 'Strobe' },
+  { class: 'radarr-logo--ember', name: 'Ember' },
+  { class: 'radarr-logo--firefly', name: 'Firefly' },
+  { class: 'radarr-logo--orbit', name: 'Orbit' },
+  { class: 'radarr-logo--ripple', name: 'Ripple' },
+  { class: 'radarr-logo--shimmer', name: 'Shimmer' },
+  { class: 'radarr-logo--pendulum', name: 'Pendulum' },
+  { class: 'radarr-logo--neon', name: 'Neon' },
+  { class: 'radarr-logo--plasma', name: 'Plasma' },
+  { class: 'radarr-logo--glitch', name: 'Glitch' },
+  { class: 'radarr-logo--aurora', name: 'Aurora' },
 ];
 
 const Index = () => {
