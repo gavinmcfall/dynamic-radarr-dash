@@ -513,32 +513,53 @@
 /* Scroll hint chevron */
 .scroll-hint {
   position: absolute;
-  bottom: 8px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  background: linear-gradient(to top, hsl(var(--card)) 60%, transparent);
-  padding: 16px 20px 8px;
-  border-radius: 8px;
-  animation: bounce-chevron 1.2s ease-in-out infinite;
+  z-index: 10;
+}
+
+.scroll-hint--bottom {
+  bottom: 4px;
+  background: linear-gradient(to top, hsl(var(--card)) 40%, transparent);
+  padding: 10px 14px 4px;
+  border-radius: 6px;
+  animation: bounce-chevron-down 1.2s ease-in-out infinite;
+}
+
+.scroll-hint--top {
+  top: 4px;
+  background: linear-gradient(to bottom, hsl(var(--card)) 40%, transparent);
+  padding: 4px 14px 10px;
+  border-radius: 6px;
+  animation: bounce-chevron-up 1.2s ease-in-out infinite;
 }
 
 .scroll-hint-icon {
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   color: hsl(var(--foreground));
-  filter: drop-shadow(0 0 4px hsl(var(--foreground) / 0.5));
+  opacity: 0.7;
 }
 
-@keyframes bounce-chevron {
+@keyframes bounce-chevron-down {
   0%, 100% { 
     transform: translateX(-50%) translateY(0);
   }
   50% { 
-    transform: translateX(-50%) translateY(8px);
+    transform: translateX(-50%) translateY(4px);
+  }
+}
+
+@keyframes bounce-chevron-up {
+  0%, 100% { 
+    transform: translateX(-50%) translateY(0);
+  }
+  50% { 
+    transform: translateX(-50%) translateY(-4px);
   }
 }
 
