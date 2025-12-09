@@ -12,7 +12,7 @@ const Index = () => {
     { id: 'bar-uhd', content: <QualityBarChart variant="uhd" /> },
   ];
 
-  const edgeLitAnimations = ['pulse', 'chase', 'breathe', 'flicker', 'rainbow'] as const;
+  const edgeLitAnimations = ['breathe'] as const;
 
   return (
     <div className="min-h-screen p-8 md:p-12">
