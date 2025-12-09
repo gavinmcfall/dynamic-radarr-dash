@@ -483,10 +483,62 @@
   margin-bottom: 20px;
 }
 
+.chart-wrapper {
+  position: relative;
+}
+
 .chart-container {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  max-height: 280px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--border)) transparent;
+}
+
+.chart-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chart-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chart-container::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+
+/* Scroll hint chevron */
+.scroll-hint {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  animation: bounce-chevron 1.5s ease-in-out infinite;
+}
+
+.scroll-hint-icon {
+  width: 20px;
+  height: 20px;
+  color: hsl(var(--muted-foreground));
+  opacity: 0.8;
+}
+
+@keyframes bounce-chevron {
+  0%, 100% { 
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translateX(-50%) translateY(6px);
+    opacity: 1;
+  }
 }
 
 .bar-row {
