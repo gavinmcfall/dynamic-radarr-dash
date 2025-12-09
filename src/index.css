@@ -592,17 +592,18 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Themed Bar Charts */
+/* Themed Bar Charts - matching header gradients */
 .quality-bar-chart--themed-hd {
   background: linear-gradient(
-    135deg,
-    rgba(77, 179, 255, 0.15) 0%,
-    rgba(29, 78, 216, 0.2) 50%,
-    hsl(var(--card)) 100%
+    90deg,
+    #4db3ff 0%,
+    #1d4ed8 45%,
+    #111827 100%
   );
-  border: 1px solid rgba(77, 179, 255, 0.3);
+  border: none;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
 
 .quality-bar-chart--themed-hd::before {
@@ -615,23 +616,28 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.15) 50%,
     transparent 100%
   );
   animation: shimmer-bg 3s ease-in-out infinite;
   pointer-events: none;
 }
 
+.quality-bar-chart--themed-hd .bar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
 .quality-bar-chart--themed-uhd {
   background: linear-gradient(
-    135deg,
-    rgba(249, 115, 22, 0.15) 0%,
-    rgba(234, 88, 12, 0.2) 50%,
-    hsl(var(--card)) 100%
+    90deg,
+    #f97316 0%,
+    #ea580c 45%,
+    #111827 100%
   );
-  border: 1px solid rgba(249, 115, 22, 0.3);
+  border: none;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
 
 .quality-bar-chart--themed-uhd::before {
@@ -644,11 +650,15 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.15) 50%,
     transparent 100%
   );
   animation: shimmer-bg 3s ease-in-out infinite;
   pointer-events: none;
+}
+
+.quality-bar-chart--themed-uhd .bar-track {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 @keyframes shimmer-bg {
