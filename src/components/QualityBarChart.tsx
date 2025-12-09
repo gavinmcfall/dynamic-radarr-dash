@@ -6,7 +6,12 @@ interface QualityData {
   color: string;
 }
 
-const sampleData: QualityData[] = [
+interface QualityBarChartProps {
+  variant?: 'hd' | 'uhd';
+  themed?: boolean;
+}
+
+const hdData: QualityData[] = [
   { quality: 'Remux-1080p', value: 422, color: '#a78bfa' },
   { quality: 'Bluray-1080p', value: 157, color: '#86efac' },
   { quality: 'WEBDL-1080p', value: 96, color: '#fcd34d' },
@@ -20,17 +25,29 @@ const sampleData: QualityData[] = [
   { quality: 'WEBDL-720p', value: 1, color: '#fb923c' },
 ];
 
-const QualityBarChart = () => {
+const uhdData: QualityData[] = [
+  { quality: 'Bluray-2160p', value: 37, color: '#86efac' },
+  { quality: 'Remux-2160p', value: 21, color: '#fcd34d' },
+  { quality: 'WEBDL-2160p', value: 13, color: '#60a5fa' },
+];
+
+const QualityBarChart = ({ variant = 'hd', themed = false }: QualityBarChartProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const maxValue = Math.max(...sampleData.map(d => d.value));
-  const total = sampleData.reduce((sum, d) => sum + d.value, 0);
+  const data = variant === 'uhd' ? uhdData : hdData;
+  const maxValue = Math.max(...data.map(d => d.value));
+  const total = data.reduce((sum, d) => sum + d.value, 0);
+  const title = variant === 'uhd' ? 'Movie Quality: radarr-uhd' : 'Movie Quality: radarr';
+
+  const containerClass = themed 
+    ? `quality-bar-chart quality-bar-chart--themed-${variant}`
+    : 'quality-bar-chart';
 
   return (
-    <div className="quality-bar-chart">
-      <h3 className="chart-title">Movie Quality: radarr</h3>
+    <div className={containerClass}>
+      <h3 className="chart-title">{title}</h3>
       
       <div className="chart-container">
-        {sampleData.map((item, index) => {
+        {data.map((item, index) => {
           const percentage = (item.value / maxValue) * 100;
           const isHovered = hoveredIndex === index;
           
@@ -42,7 +59,7 @@ const QualityBarChart = () => {
               onMouseLeave={() => setHoveredIndex(null)}
               style={{ 
                 animationDelay: `${index * 50}ms`,
-                background: isHovered ? 'rgba(255,255,255,0.05)' : 'transparent',
+                background: isHovered ? 'rgba(255,255,255,0.08)' : 'transparent',
               }}
             >
               <span 
@@ -59,7 +76,7 @@ const QualityBarChart = () => {
                     width: `${percentage}%`,
                     background: item.color,
                     boxShadow: isHovered ? `0 0 16px ${item.color}, 0 0 4px ${item.color}` : 'none',
-                    transform: isHovered ? 'scaleY(1.15)' : 'scaleY(1)',
+                    transform: isHovered ? 'scaleY(1.2)' : 'scaleY(1)',
                   }}
                 />
               </div>

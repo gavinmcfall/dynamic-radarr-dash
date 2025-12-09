@@ -1,12 +1,22 @@
 import RadarrHeader from '@/components/RadarrHeader';
 import QualityBarChart from '@/components/QualityBarChart';
-import QualityPieChart from '@/components/QualityPieChart';
+import DraggableGrid from '@/components/DraggableGrid';
 
 const animations = [
   { class: 'radarr-logo--shimmer', name: 'Shimmer' },
 ];
 
 const Index = () => {
+  const standardPanels = [
+    { id: 'bar-hd', content: <QualityBarChart variant="hd" /> },
+    { id: 'bar-uhd', content: <QualityBarChart variant="uhd" /> },
+  ];
+
+  const themedPanels = [
+    { id: 'themed-hd', content: <QualityBarChart variant="hd" themed /> },
+    { id: 'themed-uhd', content: <QualityBarChart variant="uhd" themed /> },
+  ];
+
   return (
     <div className="min-h-screen p-8 md:p-12">
       <div className="max-w-6xl mx-auto space-y-8">
@@ -26,14 +36,20 @@ const Index = () => {
           </div>
         ))}
 
-        {/* Chart Comparison: Pie vs Bar */}
+        {/* Standard Bar Charts - Draggable */}
         <div className="pt-8 border-t border-border">
-          <p className="section-title mb-6">Chart Comparison: Pie vs Horizontal Bar</p>
+          <p className="section-title mb-2">Standard Bar Charts</p>
+          <p className="text-xs text-muted-foreground mb-6">Drag panels to reorder</p>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <QualityPieChart />
-            <QualityBarChart />
-          </div>
+          <DraggableGrid panels={standardPanels} columns={2} />
+        </div>
+
+        {/* Themed Bar Charts - Draggable */}
+        <div className="pt-8 border-t border-border">
+          <p className="section-title mb-2">Themed Bar Charts (Shimmer Style)</p>
+          <p className="text-xs text-muted-foreground mb-6">Backgrounds match the shimmer banners above</p>
+          
+          <DraggableGrid panels={themedPanels} columns={2} />
         </div>
       </div>
     </div>

@@ -591,3 +591,102 @@
   color: hsl(var(--foreground));
   font-variant-numeric: tabular-nums;
 }
+
+/* Themed Bar Charts */
+.quality-bar-chart--themed-hd {
+  background: linear-gradient(
+    135deg,
+    rgba(77, 179, 255, 0.15) 0%,
+    rgba(29, 78, 216, 0.2) 50%,
+    hsl(var(--card)) 100%
+  );
+  border: 1px solid rgba(77, 179, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.quality-bar-chart--themed-hd::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
+  animation: shimmer-bg 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.quality-bar-chart--themed-uhd {
+  background: linear-gradient(
+    135deg,
+    rgba(249, 115, 22, 0.15) 0%,
+    rgba(234, 88, 12, 0.2) 50%,
+    hsl(var(--card)) 100%
+  );
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.quality-bar-chart--themed-uhd::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
+  animation: shimmer-bg 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer-bg {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+
+/* Draggable Grid Styles */
+.draggable-panel {
+  position: relative;
+  cursor: grab;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.draggable-panel:active {
+  cursor: grabbing;
+}
+
+.draggable-panel--dragging {
+  z-index: 100;
+}
+
+.draggable-panel--drag-over {
+  transform: scale(1.02);
+  box-shadow: 0 0 0 2px hsl(var(--primary)), 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.drag-handle {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px;
+  color: hsl(var(--muted-foreground));
+  opacity: 0.4;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+
+.draggable-panel:hover .drag-handle {
+  opacity: 1;
+}
