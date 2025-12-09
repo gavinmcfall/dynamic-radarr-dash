@@ -17,6 +17,11 @@ const Index = () => {
     { id: 'themed-uhd', content: <QualityBarChart variant="uhd" themed /> },
   ];
 
+  const verticalThemedPanels = [
+    { id: 'vertical-hd', content: <QualityBarChart variant="hd" themed gradientDirection="vertical" /> },
+    { id: 'vertical-uhd', content: <QualityBarChart variant="uhd" themed gradientDirection="vertical" /> },
+  ];
+
   return (
     <div className="min-h-screen p-8 md:p-12">
       <div className="max-w-6xl mx-auto space-y-8">
@@ -46,10 +51,18 @@ const Index = () => {
 
         {/* Themed Bar Charts - Draggable */}
         <div className="pt-8 border-t border-border">
-          <p className="section-title mb-2">Themed Bar Charts (Shimmer Style)</p>
+          <p className="section-title mb-2">Themed Bar Charts (Horizontal Gradient)</p>
           <p className="text-xs text-muted-foreground mb-6">Backgrounds match the shimmer banners above</p>
           
           <DraggableGrid panels={themedPanels} columns={2} />
+        </div>
+
+        {/* Vertical Gradient Bar Charts - Draggable */}
+        <div className="pt-8 border-t border-border">
+          <p className="section-title mb-2">Themed Bar Charts (Vertical Gradient)</p>
+          <p className="text-xs text-muted-foreground mb-6">Light at top, dark at bottom</p>
+          
+          <DraggableGrid panels={verticalThemedPanels} columns={2} />
         </div>
       </div>
     </div>

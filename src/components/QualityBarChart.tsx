@@ -9,6 +9,7 @@ interface QualityData {
 interface QualityBarChartProps {
   variant?: 'hd' | 'uhd';
   themed?: boolean;
+  gradientDirection?: 'horizontal' | 'vertical';
 }
 
 const hdData: QualityData[] = [
@@ -31,19 +32,21 @@ const uhdData: QualityData[] = [
   { quality: 'WEBDL-2160p', value: 13, color: '#60a5fa' },
 ];
 
-const QualityBarChart = ({ variant = 'hd', themed = false }: QualityBarChartProps) => {
+const QualityBarChart = ({ variant = 'hd', themed = false, gradientDirection = 'horizontal' }: QualityBarChartProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const data = variant === 'uhd' ? uhdData : hdData;
   const maxValue = Math.max(...data.map(d => d.value));
   const total = data.reduce((sum, d) => sum + d.value, 0);
   const title = variant === 'uhd' ? 'Movie Quality: radarr-uhd' : 'Movie Quality: radarr';
 
-  const containerClass = themed 
-    ? `quality-bar-chart quality-bar-chart--themed-${variant}`
-    : 'quality-bar-chart';
+  const getContainerClass = () => {
+    if (!themed) return 'quality-bar-chart';
+    const suffix = gradientDirection === 'vertical' ? '-vertical' : '';
+    return `quality-bar-chart quality-bar-chart--themed-${variant}${suffix}`;
+  };
 
   return (
-    <div className={containerClass}>
+    <div className={getContainerClass()}>
       <h3 className="chart-title">{title}</h3>
       
       <div className="chart-container">
