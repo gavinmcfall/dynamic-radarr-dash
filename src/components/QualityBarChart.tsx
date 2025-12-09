@@ -7,17 +7,17 @@ interface QualityData {
 }
 
 const sampleData: QualityData[] = [
-  { quality: 'Remux-1080p', value: 422, color: 'hsl(271, 60%, 60%)' },
-  { quality: 'Bluray-1080p', value: 157, color: 'hsl(85, 50%, 45%)' },
-  { quality: 'WEBDL-1080p', value: 96, color: 'hsl(45, 70%, 50%)' },
-  { quality: 'WEBRip-1080p', value: 12, color: 'hsl(0, 65%, 55%)' },
-  { quality: 'DVD', value: 4, color: 'hsl(30, 60%, 50%)' },
-  { quality: 'Bluray-720p', value: 2, color: 'hsl(210, 70%, 55%)' },
-  { quality: 'Bluray-2160p', value: 1, color: 'hsl(50, 80%, 55%)' },
-  { quality: 'HDTV-1080p', value: 1, color: 'hsl(0, 55%, 50%)' },
-  { quality: 'Remux-2160p', value: 1, color: 'hsl(120, 50%, 45%)' },
-  { quality: 'WEBDL-480p', value: 1, color: 'hsl(200, 60%, 55%)' },
-  { quality: 'WEBDL-720p', value: 1, color: 'hsl(25, 70%, 55%)' },
+  { quality: 'Remux-1080p', value: 422, color: '#a78bfa' },
+  { quality: 'Bluray-1080p', value: 157, color: '#86efac' },
+  { quality: 'WEBDL-1080p', value: 96, color: '#fcd34d' },
+  { quality: 'WEBRip-1080p', value: 12, color: '#f87171' },
+  { quality: 'DVD', value: 4, color: '#fdba74' },
+  { quality: 'Bluray-720p', value: 2, color: '#60a5fa' },
+  { quality: 'Bluray-2160p', value: 1, color: '#facc15' },
+  { quality: 'HDTV-1080p', value: 1, color: '#fb7185' },
+  { quality: 'Remux-2160p', value: 1, color: '#4ade80' },
+  { quality: 'WEBDL-480p', value: 1, color: '#38bdf8' },
+  { quality: 'WEBDL-720p', value: 1, color: '#fb923c' },
 ];
 
 const QualityBarChart = () => {
@@ -37,25 +37,34 @@ const QualityBarChart = () => {
           return (
             <div 
               key={item.quality}
-              className={`bar-row ${isHovered ? 'bar-row--hovered' : ''}`}
+              className="bar-row"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              style={{ animationDelay: `${index * 50}ms` }}
+              style={{ 
+                animationDelay: `${index * 50}ms`,
+                background: isHovered ? 'rgba(255,255,255,0.05)' : 'transparent',
+              }}
             >
-              <span className="bar-label">{item.quality}</span>
+              <span 
+                className="bar-label"
+                style={{ color: isHovered ? item.color : undefined }}
+              >
+                {item.quality}
+              </span>
               
               <div className="bar-track">
                 <div 
                   className="bar-fill"
                   style={{ 
                     width: `${percentage}%`,
-                    background: `linear-gradient(90deg, ${item.color}, ${item.color}dd)`,
-                    boxShadow: isHovered ? `0 0 20px ${item.color}80` : 'none'
+                    background: item.color,
+                    boxShadow: isHovered ? `0 0 16px ${item.color}, 0 0 4px ${item.color}` : 'none',
+                    transform: isHovered ? 'scaleY(1.15)' : 'scaleY(1)',
                   }}
                 />
               </div>
               
-              <span className="bar-value">
+              <span className="bar-value" style={{ color: isHovered ? item.color : undefined }}>
                 {item.value}
                 <span className="bar-percent">
                   ({((item.value / total) * 100).toFixed(1)}%)

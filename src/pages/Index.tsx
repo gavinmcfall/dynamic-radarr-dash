@@ -1,6 +1,6 @@
 import RadarrHeader from '@/components/RadarrHeader';
 import QualityBarChart from '@/components/QualityBarChart';
-import QualityRadarChart from '@/components/QualityRadarChart';
+import QualityPieChart from '@/components/QualityPieChart';
 
 const animations = [
   { class: 'radarr-logo--shimmer', name: 'Shimmer' },
@@ -26,13 +26,13 @@ const Index = () => {
           </div>
         ))}
 
-        {/* Chart Alternatives */}
+        {/* Chart Comparison: Pie vs Bar */}
         <div className="pt-8 border-t border-border">
-          <p className="section-title mb-6">Chart Alternatives to Pie</p>
+          <p className="section-title mb-6">Chart Comparison: Pie vs Horizontal Bar</p>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <QualityPieChart />
             <QualityBarChart />
-            <QualityRadarChart />
           </div>
         </div>
       </div>
