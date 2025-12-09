@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 interface QualityData {
   quality: string;
@@ -32,42 +32,78 @@ const uhdData: QualityData[] = [
   { quality: 'WEBDL-2160p', value: 13, color: '#60a5fa' },
 ];
 
+const HINT_REAPPEAR_DELAY = 10000; // 10 seconds
+
 const QualityBarChart = ({ variant = 'hd', edgeLit }: QualityBarChartProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [showScrollHint, setShowScrollHint] = useState(false);
-  const [hasScrolled, setHasScrolled] = useState(false);
+  const [showDownHint, setShowDownHint] = useState(false);
+  const [showUpHint, setShowUpHint] = useState(false);
+  const [isScrollable, setIsScrollable] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const data = variant === 'uhd' ? uhdData : hdData;
   const maxValue = Math.max(...data.map(d => d.value));
   const total = data.reduce((sum, d) => sum + d.value, 0);
   const title = variant === 'uhd' ? 'Movie Quality: radarr-uhd' : 'Movie Quality: radarr';
 
+  const checkScrollPosition = useCallback(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const { scrollTop, scrollHeight, clientHeight } = container;
+    const isAtTop = scrollTop < 10;
+    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
+    const canScroll = scrollHeight > clientHeight;
+
+    setIsScrollable(canScroll);
+
+    // Clear any existing timeout
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+
+    // Hide hints immediately on scroll
+    setShowDownHint(false);
+    setShowUpHint(false);
+
+    // Set timeout to show appropriate hint after 10s
+    scrollTimeoutRef.current = setTimeout(() => {
+      if (!canScroll) return;
+      
+      if (isAtTop) {
+        setShowDownHint(true);
+      } else if (isAtBottom) {
+        setShowUpHint(true);
+      }
+    }, HINT_REAPPEAR_DELAY);
+  }, []);
+
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const checkScrollable = () => {
-      const isScrollable = container.scrollHeight > container.clientHeight;
-      setShowScrollHint(isScrollable && !hasScrolled);
-    };
+    // Initial check
+    const { scrollHeight, clientHeight } = container;
+    const canScroll = scrollHeight > clientHeight;
+    setIsScrollable(canScroll);
+    
+    // Show down hint initially if scrollable
+    if (canScroll) {
+      setShowDownHint(true);
+    }
 
-    const handleScroll = () => {
-      if (!hasScrolled) {
-        setHasScrolled(true);
-        setShowScrollHint(false);
-      }
-    };
-
-    checkScrollable();
-    container.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', checkScrollable);
+    container.addEventListener('scroll', checkScrollPosition);
+    window.addEventListener('resize', checkScrollPosition);
 
     return () => {
-      container.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', checkScrollable);
+      container.removeEventListener('scroll', checkScrollPosition);
+      window.removeEventListener('resize', checkScrollPosition);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
     };
-  }, [hasScrolled]);
+  }, [checkScrollPosition]);
 
   const getContainerClass = () => {
     if (!edgeLit) return 'quality-bar-chart';
@@ -79,6 +115,12 @@ const QualityBarChart = ({ variant = 'hd', edgeLit }: QualityBarChartProps) => {
       <h3 className="chart-title">{title}</h3>
       
       <div className="chart-wrapper">
+        {showUpHint && isScrollable && (
+          <div className="scroll-hint scroll-hint--top">
+            <ChevronUp className="scroll-hint-icon" />
+          </div>
+        )}
+        
         <div ref={containerRef} className="chart-container">
           {data.map((item, index) => {
             const percentage = (item.value / maxValue) * 100;
@@ -125,8 +167,8 @@ const QualityBarChart = ({ variant = 'hd', edgeLit }: QualityBarChartProps) => {
           })}
         </div>
         
-        {showScrollHint && (
-          <div className="scroll-hint">
+        {showDownHint && isScrollable && (
+          <div className="scroll-hint scroll-hint--bottom">
             <ChevronDown className="scroll-hint-icon" />
           </div>
         )}
