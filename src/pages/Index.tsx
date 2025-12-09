@@ -12,15 +12,7 @@ const Index = () => {
     { id: 'bar-uhd', content: <QualityBarChart variant="uhd" /> },
   ];
 
-  const themedPanels = [
-    { id: 'themed-hd', content: <QualityBarChart variant="hd" themed /> },
-    { id: 'themed-uhd', content: <QualityBarChart variant="uhd" themed /> },
-  ];
-
-  const verticalThemedPanels = [
-    { id: 'vertical-hd', content: <QualityBarChart variant="hd" themed gradientDirection="vertical" /> },
-    { id: 'vertical-uhd', content: <QualityBarChart variant="uhd" themed gradientDirection="vertical" /> },
-  ];
+  const edgeLitAnimations = ['pulse', 'chase', 'breathe', 'flicker', 'rainbow'] as const;
 
   return (
     <div className="min-h-screen p-8 md:p-12">
@@ -49,21 +41,21 @@ const Index = () => {
           <DraggableGrid panels={standardPanels} columns={2} />
         </div>
 
-        {/* Themed Bar Charts - Draggable */}
-        <div className="pt-8 border-t border-border">
-          <p className="section-title mb-2">Themed Bar Charts (Horizontal Gradient)</p>
-          <p className="text-xs text-muted-foreground mb-6">Backgrounds match the shimmer banners above</p>
-          
-          <DraggableGrid panels={themedPanels} columns={2} />
-        </div>
-
-        {/* Vertical Gradient Bar Charts - Draggable */}
-        <div className="pt-8 border-t border-border">
-          <p className="section-title mb-2">Themed Bar Charts (Vertical Gradient)</p>
-          <p className="text-xs text-muted-foreground mb-6">Light at top, dark at bottom</p>
-          
-          <DraggableGrid panels={verticalThemedPanels} columns={2} />
-        </div>
+        {/* Edge-Lit Bar Charts */}
+        {edgeLitAnimations.map((animType) => (
+          <div key={animType} className="pt-8 border-t border-border">
+            <p className="section-title mb-2">Edge-Lit: {animType.charAt(0).toUpperCase() + animType.slice(1)}</p>
+            <p className="text-xs text-muted-foreground mb-6">Thin glowing animated border</p>
+            
+            <DraggableGrid 
+              panels={[
+                { id: `edge-${animType}-hd`, content: <QualityBarChart variant="hd" edgeLit={animType} /> },
+                { id: `edge-${animType}-uhd`, content: <QualityBarChart variant="uhd" edgeLit={animType} /> },
+              ]} 
+              columns={2} 
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
