@@ -30,15 +30,17 @@ const UptimeCounter = ({ variant = 'hd', edgeLit }: UptimeCounterProps) => {
       
       <div className="counter-display">
         {segments.map((segment, index) => (
-          <div key={index} className="counter-segment">
-            <div className="counter-digits">
-              {segment.value.split('').map((digit, dIndex) => (
-                <span key={dIndex} className="counter-digit">
-                  {digit}
-                </span>
-              ))}
+          <div key={index} className="counter-segment-wrapper">
+            <div className="counter-segment">
+              <div className="counter-digits">
+                {segment.value.split('').map((digit, dIndex) => (
+                  <span key={dIndex} className="counter-digit">
+                    {digit}
+                  </span>
+                ))}
+              </div>
+              <span className="counter-label">{segment.label}</span>
             </div>
-            <span className="counter-label">{segment.label}</span>
             {index < segments.length - 1 && (
               <span className="counter-separator">:</span>
             )}
