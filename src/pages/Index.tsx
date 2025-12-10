@@ -4,6 +4,7 @@ import RadarrHeader from '@/components/RadarrHeader';
 import QualityBarChart from '@/components/QualityBarChart';
 import DraggableGrid from '@/components/DraggableGrid';
 import DownloadProgressRing from '@/components/DownloadProgressRing';
+import DownloadQueueCount from '@/components/DownloadQueueCount';
 import MovieStateStack from '@/components/MovieStateStack';
 import CodecBarChart from '@/components/CodecBarChart';
 import StatusBeacon from '@/components/StatusBeacon';
@@ -115,6 +116,8 @@ const Index = () => {
             panels={[
               { id: 'downloads-hd', content: <DownloadProgressRing variant="hd" edgeLit="breathe" /> },
               { id: 'downloads-uhd', content: <DownloadProgressRing variant="uhd" edgeLit="breathe" /> },
+              { id: 'downloads-count-hd', content: <DownloadQueueCount variant="hd" edgeLit="breathe" /> },
+              { id: 'downloads-count-uhd', content: <DownloadQueueCount variant="uhd" edgeLit="breathe" /> },
             ]} 
             columns={2} 
           />
