@@ -794,3 +794,571 @@
 .draggable-panel:hover .drag-handle {
   opacity: 1;
 }
+
+/* ========================================
+   Download Progress Ring Styles
+   ======================================== */
+.download-progress-ring {
+  background: hsl(var(--card));
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid hsl(var(--border));
+}
+
+.download-progress-ring--edge-lit {
+  position: relative;
+  overflow: hidden;
+}
+
+.download-progress-ring--edge-lit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(90deg, #4db3ff, #a78bfa, #f97316, #4db3ff);
+  background-size: 300% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.download-progress-ring--edge-breathe::before {
+  animation: edge-breathe 4s ease-in-out infinite;
+}
+
+.progress-rings-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 16px;
+}
+
+.progress-ring-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-ring-visual {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+.progress-ring-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progress-ring-track {
+  stroke: hsl(var(--muted));
+}
+
+.progress-ring-fill {
+  transition: stroke-dashoffset 0.5s ease-out;
+}
+
+.progress-ring-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.progress-ring-percent {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+}
+
+.progress-ring-speed {
+  display: block;
+  font-size: 9px;
+  color: hsl(var(--muted-foreground));
+  margin-top: 2px;
+}
+
+.progress-ring-name {
+  font-size: 10px;
+  color: hsl(var(--muted-foreground));
+  text-align: center;
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ========================================
+   Movie State Stack Styles
+   ======================================== */
+.movie-state-stack {
+  background: hsl(var(--card));
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid hsl(var(--border));
+}
+
+.movie-state-stack--edge-lit {
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-state-stack--edge-lit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(90deg, #4db3ff, #a78bfa, #f97316, #4db3ff);
+  background-size: 300% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.movie-state-stack--edge-breathe::before {
+  animation: edge-breathe 4s ease-in-out infinite;
+}
+
+.state-stack-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.state-row {
+  display: grid;
+  grid-template-columns: 24px 90px 1fr 50px;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.state-row:hover {
+  background: hsl(var(--muted) / 0.5);
+}
+
+.state-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.state-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
+
+.state-bar-track {
+  height: 8px;
+  background: hsl(var(--muted));
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.state-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.state-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.state-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 12px;
+  margin-top: 8px;
+  border-top: 1px solid hsl(var(--border));
+  font-size: 12px;
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+}
+
+/* ========================================
+   Status Beacon Styles
+   ======================================== */
+.status-beacon {
+  background: hsl(var(--card));
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid hsl(var(--border));
+}
+
+.status-beacon--edge-lit {
+  position: relative;
+  overflow: hidden;
+}
+
+.status-beacon--edge-lit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(90deg, #4db3ff, #a78bfa, #f97316, #4db3ff);
+  background-size: 300% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.status-beacon--edge-breathe::before {
+  animation: edge-breathe 4s ease-in-out infinite;
+}
+
+.beacon-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.beacon-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 60px;
+  align-items: center;
+  gap: 12px;
+}
+
+.beacon-indicator-wrapper {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beacon-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.beacon-indicator.beacon-pulse {
+  animation: beacon-pulse-anim 2s ease-in-out infinite;
+}
+
+.beacon-indicator.beacon-flicker {
+  animation: beacon-flicker-anim 0.3s ease-in-out infinite;
+}
+
+@keyframes beacon-pulse-anim {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+@keyframes beacon-flicker-anim {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.beacon-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid;
+  opacity: 0.3;
+  animation: beacon-ring-pulse 2s ease-out infinite;
+}
+
+@keyframes beacon-ring-pulse {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.beacon-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.beacon-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+
+.beacon-status {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.beacon-time {
+  font-size: 11px;
+  color: hsl(var(--muted-foreground));
+  text-align: right;
+}
+
+/* ========================================
+   Uptime Counter Styles
+   ======================================== */
+.uptime-counter {
+  background: hsl(var(--card));
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid hsl(var(--border));
+}
+
+.uptime-counter--edge-lit {
+  position: relative;
+  overflow: hidden;
+}
+
+.uptime-counter--edge-lit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(90deg, #4db3ff, #a78bfa, #f97316, #4db3ff);
+  background-size: 300% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.uptime-counter--edge-breathe::before {
+  animation: edge-breathe 4s ease-in-out infinite;
+}
+
+.counter-display {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px 0;
+}
+
+.counter-segment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.counter-digits {
+  display: flex;
+  gap: 2px;
+}
+
+.counter-digit {
+  font-size: 28px;
+  font-weight: 700;
+  font-family: 'SF Mono', 'Consolas', 'Monaco', monospace;
+  color: hsl(var(--foreground));
+  background: hsl(var(--muted));
+  padding: 6px 8px;
+  border-radius: 6px;
+  min-width: 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.counter-digit::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation: digit-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes digit-shimmer {
+  0%, 80% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.counter-label {
+  font-size: 9px;
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+  letter-spacing: 0.1em;
+  margin-top: 6px;
+}
+
+.counter-separator {
+  font-size: 24px;
+  font-weight: 700;
+  color: hsl(var(--muted-foreground));
+  align-self: flex-start;
+  margin-top: 8px;
+  margin: 8px 4px 0;
+  animation: separator-blink 1s ease-in-out infinite;
+}
+
+@keyframes separator-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.uptime-footer {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.uptime-since {
+  font-size: 11px;
+  color: hsl(var(--muted-foreground));
+}
+
+/* ========================================
+   Storage Tank Styles
+   ======================================== */
+.storage-tank {
+  background: hsl(var(--card));
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid hsl(var(--border));
+}
+
+.storage-tank--edge-lit {
+  position: relative;
+  overflow: hidden;
+}
+
+.storage-tank--edge-lit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(90deg, #4db3ff, #a78bfa, #f97316, #4db3ff);
+  background-size: 300% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.storage-tank--edge-breathe::before {
+  animation: edge-breathe 4s ease-in-out infinite;
+}
+
+.storage-tank--warning {
+  border-color: hsl(0, 84%, 60% / 0.5);
+}
+
+.tank-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.tank-visual {
+  position: relative;
+  width: 100px;
+  height: 160px;
+}
+
+.tank-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.tank-outline {
+  stroke: hsl(var(--border));
+}
+
+.tank-wave {
+  animation: tank-wave-anim 2s ease-in-out infinite;
+}
+
+@keyframes tank-wave-anim {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+
+.tank-percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.tank-percent-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.tank-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tank-usage {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.tank-used {
+  font-size: 28px;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+}
+
+.tank-separator {
+  font-size: 18px;
+  color: hsl(var(--muted-foreground));
+}
+
+.tank-total {
+  font-size: 14px;
+  color: hsl(var(--muted-foreground));
+}
+
+.tank-free {
+  font-size: 12px;
+  color: hsl(var(--muted-foreground));
+}
+
+/* HD/UHD theming for new components */
+.download-progress-ring--hd .progress-ring-fill,
+.movie-state-stack--hd .state-bar-fill,
+.status-beacon--hd .beacon-indicator,
+.uptime-counter--hd .counter-digit,
+.storage-tank--hd .tank-fill {
+  --theme-color: hsl(var(--radarr-hd));
+}
+
+.download-progress-ring--uhd .progress-ring-fill,
+.movie-state-stack--uhd .state-bar-fill,
+.status-beacon--uhd .beacon-indicator,
+.uptime-counter--uhd .counter-digit,
+.storage-tank--uhd .tank-fill {
+  --theme-color: hsl(var(--radarr-uhd));
+}
+
+/* Add radarr-hd and radarr-uhd CSS variables */
+:root {
+  --radarr-hd: 205 100% 65%;
+  --radarr-uhd: 25 95% 53%;
+}
